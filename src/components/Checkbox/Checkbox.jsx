@@ -14,8 +14,7 @@ export const Checkbox = () => {
     const lastIndex = choosedVariants.findIndex(node => node.nodeId === nodeId);
     const arrayOfChosenValues = choosedVariants.slice(0, lastIndex+1);
     const stringOfChosenValues = arrayOfChosenValues.map(value => value.value).join('-');
-    const buttonText = `Варіант ${stringOfChosenValues}`;
-    console.log(lastIndex);
+    const buttonText = lastIndex===-1 ? 'Вибрати значення' : `Варіант ${stringOfChosenValues}`;
 
     return (
         <>
