@@ -2,10 +2,14 @@ import { useState } from 'react';
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import { CheckboxOneVariant } from '../CheckboxOneVariat/CheckboxOneVariat';
 import { StyledButton, VariantsList } from './Checkbox.styled';
+import { useSelector } from 'react-redux';
+import { selectChoosedVariants } from '../../redux/selectors';
 
 export const Checkbox = () => {
     const [areVariantsOpen, setAreVariantsOpen] = useState(false);
     const [choosedVariant, setChoosedVariant] = useState('Вибрати значення');
+    const buttonText = useSelector(selectChoosedVariants);
+    console.log(buttonText);
     return (
         <>
             <StyledButton areVariantsOpen={areVariantsOpen}
