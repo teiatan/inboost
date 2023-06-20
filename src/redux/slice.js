@@ -32,8 +32,6 @@ export const nodeSlice = createSlice({
   }
 });
 
-export const { 
-  setNode
-} = nodeSlice.actions;
+export const { setNode } = nodeSlice.actions;
 
 export const nodeReducer = nodeSlice.reducer;
