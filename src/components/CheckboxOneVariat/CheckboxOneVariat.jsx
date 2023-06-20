@@ -1,11 +1,11 @@
-import { useCallback } from 'react';
 import { StyledInput, StyledLabel, StyledLi } from './CheckboxOneVariat.styled';
 
-export const CheckboxOneVariant = ({value}) => {
+export const CheckboxOneVariant = ({value, choosedVariant, setChoosedVariant, setAreVariantsOpen}) => {
 
-    const onChange = useCallback((e) => {
-      console.log(e.target.value);
-    }, []);
+    const onChange = (e) => {
+      setChoosedVariant(value);
+      setAreVariantsOpen(false);
+    };
 
     return (
         <StyledLi>
@@ -15,6 +15,7 @@ export const CheckboxOneVariant = ({value}) => {
                 type="checkbox" 
                 onChange={onChange} 
                 value={value}
+                checked={value === choosedVariant}
             />
             
             <StyledLabel 

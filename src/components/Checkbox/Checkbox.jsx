@@ -5,12 +5,13 @@ import { StyledButton, VariantsList } from './Checkbox.styled';
 
 export const Checkbox = () => {
     const [areVariantsOpen, setAreVariantsOpen] = useState(false);
+    const [choosedVariant, setChoosedVariant] = useState('Вибрати значення');
     return (
         <>
             <StyledButton areVariantsOpen={areVariantsOpen}
                 onClick={()=>setAreVariantsOpen(!areVariantsOpen)}
             >
-                Вибрати значення
+                {choosedVariant}
                 {areVariantsOpen ? 
                 <MdOutlineKeyboardArrowUp color='#2B7CFA' size='20px'/> :
                 <MdOutlineKeyboardArrowDown color='#2B7CFA'size='20px'/>}
@@ -18,7 +19,14 @@ export const Checkbox = () => {
           
             {areVariantsOpen && 
                 <VariantsList style={{}}>
-                    {[1, 2, 3, 4].map(variant => <CheckboxOneVariant key={variant} value={variant} />)}
+                    {[1, 2, 3, 4].map(variant => 
+                        <CheckboxOneVariant 
+                            key={variant} 
+                            value={variant} 
+                            choosedVariant={choosedVariant} 
+                            setChoosedVariant={setChoosedVariant}
+                            setAreVariantsOpen={setAreVariantsOpen}
+                    />)}
                 </VariantsList>}
          </>
     )
