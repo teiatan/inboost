@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialNodes = [
   { id: '1', type: 'Node', position: { x: 0, y: 0 } },
-  { id: '2', type: 'Node', position: { x: 0, y: 200 } }
+  { id: '2', type: 'Node', position: { x: 50, y: 150 } }
 ];
 
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
@@ -16,15 +16,22 @@ export const nodeSlice = createSlice({
   name: 'node',
   initialState,
   reducers: {
-    setNewNode(state, {payload}) {
-      state.nodes = payload;
-      state.nodes = payload;
+    setNode(state, {payload}) {
+      const {nodeId, value} = payload;
+      const existedNodeIndex = state.nodes.findIndex(node => Number(node.id) === Number(nodeId)+1);
+      if(existedNodeIndex === -1) {
+        const x = state.nodes[state.nodes.length -1].position.x + 50;
+        const y = state.nodes[state.nodes.length -1].position.y + 150;
+        state.nodes.push({ id: `${Number(nodeId)+1}`, type: 'Node', position: { x, y } })
+        return;
+      }
+      console.log('node exists');
     }
   }
 });
 
 export const { 
-  setNewNode
+  setNode
 } = nodeSlice.actions;
 
 export const nodeReducer = nodeSlice.reducer;
