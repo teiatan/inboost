@@ -23,6 +23,7 @@ export const nodeSlice = createSlice({
         const x = state.nodes[state.nodes.length -1].position.x + 50;
         const y = state.nodes[state.nodes.length -1].position.y + 150;
         state.nodes.push({ id: `${Number(nodeId)+1}`, type: 'Node', position: { x, y } })
+        state.edges.push({ id: `${nodeId}-${Number(nodeId)+1}`, source: `${nodeId}`, target: `${Number(nodeId)+1}` })
         return;
       }
       console.log('node exists');
