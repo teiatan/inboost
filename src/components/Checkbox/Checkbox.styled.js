@@ -22,4 +22,5 @@ export const VariantsList = styled.ul`
     padding: 0;
     border: 1px solid #ECF3FF;
     border-radius: 0 0 3px 3px;
+    z-index: 10000;
 `;

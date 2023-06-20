@@ -43,7 +43,7 @@ export default function App() {
       >
         <Controls />
         <MiniMap />
-        <Background variant="#F9FAFF" gap={12} size={1} />
+        <Background color="#F9FAFF" style={{backgroundColor: "#F9FAFF"}} gap={12} size={1} />
       </ReactFlow>
     </MainContainer>
   );
