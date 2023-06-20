@@ -5,15 +5,10 @@ import ReactFlow, {
   Background,
   useNodesState,
   useEdgesState,
-  addEdge,
-  Handle,
-  Position,
+  addEdge
 } from 'reactflow';
-
-import { SlArrowDown, SlArrowUp } from "react-icons/sl";
-
 import 'reactflow/dist/style.css';
-import { Node } from './Node';
+import { Node } from './Node/Node';
 
 const initialNodes = [
   { id: '1', type: 'Node', position: { x: 0, y: 0 }, data: { value: 123 } },
