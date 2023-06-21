@@ -1,13 +1,16 @@
 import { Handle, Position, useNodeId } from 'reactflow';
-import { CustomContainer } from '../CustomContainer/CustomContainer';
-import 'reactflow/dist/style.css';
 import { useSelector } from 'react-redux';
 import { selectNodes } from 'redux/selectors';
+import { CustomContainer } from '../CustomContainer/CustomContainer';
+import 'reactflow/dist/style.css';
 
 export const Node = ({ data }) => {
   const nodeId = useNodeId();
   const nodes = useSelector(selectNodes);
-  let sourceHandleBackgroundColor = {backgroundColor: 'grey'};
+
+  const isFirstNode = nodes[0].id === nodeId;
+
+  let sourceHandleBackgroundColor = {backgroundColor: '#ADB5BD'};
   if(nodes[nodes.length -1].id === nodeId) {
     sourceHandleBackgroundColor = {backgroundColor: 'transparent'};
   }
@@ -22,7 +25,7 @@ export const Node = ({ data }) => {
       <CustomContainer />
       <Handle 
         type="source" 
-        position={Position.Bottom}  
+        position={isFirstNode ? Position.Bottom : Position.Right}  
         style={{width: '1px', border:'none', zIndex:-1, ...sourceHandleBackgroundColor}}
       />
     </>

@@ -28,8 +28,8 @@ export const nodeSlice = createSlice({
       const nextNodeConnectionIndex = state.nodes.findIndex(node => Number(node.id) === Number(nodeId)+1);
       
       if(nextNodeConnectionIndex === -1) {
-        const x = state.nodes[state.nodes.length -1].position.x + 80;
-        const y = state.nodes[state.nodes.length -1].position.y + 160;
+        const x = state.nodes[state.nodes.length -1].position.x + 150;
+        const y = state.nodes[state.nodes.length -1].position.y + 155;
         state.nodes.push({ 
           id: `${Number(nodeId)+1}`, 
           type: 'Node', 
