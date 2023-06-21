@@ -48,10 +48,15 @@ export const nodeSlice = createSlice({
       };
 
       state.choosedVariants[nextNodeConnectionIndex-1].value = value;
+    },
+    cutNodeList(state, {payload}) {
+      const nodeIndex = state.nodes.findIndex(node => node.id === payload);
+      state.nodes = state.nodes.slice(0,nodeIndex+1);
+      state.edges = state.edges.slice(0,nodeIndex);
     }
   }
 });
 
-export const { setNode } = nodeSlice.actions;
+export const { setNode, cutNodeList } = nodeSlice.actions;
 
 export const nodeReducer = nodeSlice.reducer;

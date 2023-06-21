@@ -1,6 +1,6 @@
 import { useNodeId } from 'reactflow';
 import { useDispatch } from 'react-redux';
-import { setNode } from 'redux/slice';
+import { cutNodeList, setNode } from 'redux/slice';
 import { StyledInput, StyledLabel, StyledLi } from './CheckboxOneVariat.styled';
 
 export const CheckboxOneVariant = ({value, choosedVariant, setChoosedVariant, setAreVariantsOpen}) => {
@@ -8,9 +8,14 @@ export const CheckboxOneVariant = ({value, choosedVariant, setChoosedVariant, se
     const dispatch = useDispatch();
 
     const onChange = (e) => {
-      setChoosedVariant(value);
-      setAreVariantsOpen(false);
-      dispatch(setNode({nodeId, value}));
+        setChoosedVariant(value);
+        setAreVariantsOpen(false);
+        if (value !== 'Вибрати значення') {
+            dispatch(setNode({nodeId, value}));
+        } else {
+            dispatch(cutNodeList(nodeId));
+        };
+        
     };
 
     return (

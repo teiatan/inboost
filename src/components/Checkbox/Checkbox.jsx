@@ -8,7 +8,7 @@ import { StyledButton, VariantsList } from './Checkbox.styled';
 
 export const Checkbox = () => {
     const [areVariantsOpen, setAreVariantsOpen] = useState(false);
-    const [choosedVariant, setChoosedVariant] = useState('');
+    const [choosedVariant, setChoosedVariant] = useState('Вибрати значення');
 
     const choosedVariantsArray = useSelector(selectChoosedVariants);
     const nodeId = useNodeId();
@@ -35,6 +35,7 @@ export const Checkbox = () => {
           
             {areVariantsOpen && 
                 <VariantsList>
+
                     {allVariants.map(variant => 
                         <CheckboxOneVariant 
                             key={variant} 
@@ -43,6 +44,16 @@ export const Checkbox = () => {
                             setChoosedVariant={setChoosedVariant}
                             setAreVariantsOpen={setAreVariantsOpen}
                     />)}
+
+                    {choosedVariant !== 'Вибрати значення' && 
+                        <CheckboxOneVariant 
+                            value={'Вибрати значення'}
+                            choosedVariant={choosedVariant} 
+                            setChoosedVariant={setChoosedVariant}
+                            setAreVariantsOpen={setAreVariantsOpen}
+                        />
+                    }
+
                 </VariantsList>}
          </>
     )
