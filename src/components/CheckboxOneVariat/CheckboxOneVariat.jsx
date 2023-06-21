@@ -1,7 +1,7 @@
 import { useNodeId } from 'reactflow';
-import { StyledInput, StyledLabel, StyledLi } from './CheckboxOneVariat.styled';
 import { useDispatch } from 'react-redux';
-import { setNode } from '../../redux/slice';
+import { setNode } from 'redux/slice';
+import { StyledInput, StyledLabel, StyledLi } from './CheckboxOneVariat.styled';
 
 export const CheckboxOneVariant = ({value, choosedVariant, setChoosedVariant, setAreVariantsOpen}) => {
     const nodeId = useNodeId();

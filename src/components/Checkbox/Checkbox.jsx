@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNodeId } from 'reactflow';
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
+import { selectAllVariants, selectChoosedVariants } from 'redux/selectors';
 import { CheckboxOneVariant } from '../CheckboxOneVariat/CheckboxOneVariat';
 import { StyledButton, VariantsList } from './Checkbox.styled';
-import { useSelector } from 'react-redux';
-import { selectAllVariants, selectChoosedVariants } from '../../redux/selectors';
-import { useNodeId } from 'reactflow';
 
 export const Checkbox = () => {
     const [areVariantsOpen, setAreVariantsOpen] = useState(false);
