@@ -3,18 +3,23 @@ import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icon
 import { CheckboxOneVariant } from '../CheckboxOneVariat/CheckboxOneVariat';
 import { StyledButton, VariantsList } from './Checkbox.styled';
 import { useSelector } from 'react-redux';
-import { selectChoosedVariants } from '../../redux/selectors';
+import { selectAllVariants, selectChoosedVariants } from '../../redux/selectors';
 import { useNodeId } from 'reactflow';
 
 export const Checkbox = () => {
     const [areVariantsOpen, setAreVariantsOpen] = useState(false);
-    const [choosedVariant, setChoosedVariant] = useState('Вибрати значення');
-    const choosedVariants = useSelector(selectChoosedVariants);
+    const [choosedVariant, setChoosedVariant] = useState('');
+
+    const choosedVariantsArray = useSelector(selectChoosedVariants);
     const nodeId = useNodeId();
-    const lastIndex = choosedVariants.findIndex(node => node.nodeId === nodeId);
-    const arrayOfChosenValues = choosedVariants.slice(0, lastIndex+1);
-    const stringOfChosenValues = arrayOfChosenValues.map(value => value.value).join('-');
-    const buttonText = lastIndex===-1 ? 'Вибрати значення' : `Варіант ${stringOfChosenValues}`;
+    let allVariants = useSelector(selectAllVariants)[Number(nodeId)-1];
+    if(!allVariants) {allVariants = [1,2,3]};
+
+    const lastNodeIndex = choosedVariantsArray.findIndex(node => node.nodeId === nodeId);
+    const arrayOfChosenValuesBeforeThisNode = choosedVariantsArray.slice(0, lastNodeIndex+1);
+    const stringOfChosenValues = arrayOfChosenValuesBeforeThisNode.map(item => item.value).join('-');
+
+    const buttonText = lastNodeIndex===-1 ? 'Вибрати значення' : `Варіант ${stringOfChosenValues}`;
 
     return (
         <>
@@ -23,13 +28,14 @@ export const Checkbox = () => {
             >
                 {buttonText}
                 {areVariantsOpen ? 
-                <MdOutlineKeyboardArrowUp color='#2B7CFA' size='20px'/> :
-                <MdOutlineKeyboardArrowDown color='#2B7CFA'size='20px'/>}
+                    <MdOutlineKeyboardArrowUp color='#2B7CFA' size='20px'/> :
+                    <MdOutlineKeyboardArrowDown color='#2B7CFA'size='20px'/>
+                }
             </StyledButton>
           
             {areVariantsOpen && 
-                <VariantsList style={{}}>
-                    {[1, 2, 3, 4].map(variant => 
+                <VariantsList>
+                    {allVariants.map(variant => 
                         <CheckboxOneVariant 
                             key={variant} 
                             value={variant} 
