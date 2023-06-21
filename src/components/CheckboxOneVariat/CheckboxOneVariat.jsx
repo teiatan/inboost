@@ -10,13 +10,14 @@ export const CheckboxOneVariant = ({value, choosedVariant, setChoosedVariant, se
     const onChange = (e) => {
         setChoosedVariant(value);
         setAreVariantsOpen(false);
-        if (value !== 'Вибрати значення') {
-            dispatch(setNode({nodeId, value}));
-        } else {
+        dispatch(setNode({nodeId, value}));
+        if (value === 'Вибрати значення') {
             dispatch(cutNodeList(nodeId));
         };
         
     };
+
+    const labelText = (value === 'Вибрати значення') ? value : `Варіант ${value}`;
 
     return (
         <StyledLi>
@@ -32,7 +33,7 @@ export const CheckboxOneVariant = ({value, choosedVariant, setChoosedVariant, se
             <StyledLabel 
                 htmlFor={`variant${value}`}
             >
-                    Варіант {value}
+                {labelText}
             </StyledLabel>
             
         </StyledLi>

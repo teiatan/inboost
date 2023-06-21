@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNodeId } from 'reactflow';
 import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
@@ -9,6 +9,7 @@ import { StyledButton, VariantsList } from './Checkbox.styled';
 export const Checkbox = () => {
     const [areVariantsOpen, setAreVariantsOpen] = useState(false);
     const [choosedVariant, setChoosedVariant] = useState('Вибрати значення');
+    const [buttonText, setButtonText] = useState('Вибрати значення');
 
     const choosedVariantsArray = useSelector(selectChoosedVariants);
     const nodeId = useNodeId();
@@ -19,7 +20,10 @@ export const Checkbox = () => {
     const arrayOfChosenValuesBeforeThisNode = choosedVariantsArray.slice(0, lastNodeIndex+1);
     const stringOfChosenValues = arrayOfChosenValuesBeforeThisNode.map(item => item.value).join('-');
 
-    const buttonText = lastNodeIndex===-1 ? 'Вибрати значення' : `Варіант ${stringOfChosenValues}`;
+    useEffect(()=>{
+        setButtonText((choosedVariant === 'Вибрати значення') ? choosedVariant : `Варіант ${stringOfChosenValues}`);
+    }, [choosedVariant, lastNodeIndex, stringOfChosenValues])
+    
 
     return (
         <>

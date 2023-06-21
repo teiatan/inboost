@@ -53,6 +53,7 @@ export const nodeSlice = createSlice({
       const nodeIndex = state.nodes.findIndex(node => node.id === payload);
       state.nodes = state.nodes.slice(0,nodeIndex+1);
       state.edges = state.edges.slice(0,nodeIndex);
+      state.choosedVariants = state.choosedVariants.slice(0,nodeIndex);
     }
   }
 });
